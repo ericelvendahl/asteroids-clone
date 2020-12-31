@@ -28,14 +28,15 @@ function draw() {
   }
 
   for (let i = lasers.length - 1; i >= 0; i--) {
-    console.log("lasers is ", lasers);
+    //console.log("lasers is ", lasers);
     lasers[i].render();
     lasers[i].update();
     for (let j = asteroids.length - 1; j >= 0; j--) {
       if (lasers[i].hits(asteroids[j])) {
         let newAsteroids = asteroids[j].breakup();
-        asteroids.concat(newAsteroids);
-        console.log(newAsteroids);
+        asteroids = asteroids.concat(newAsteroids);
+        console.table("newAsteroids is: ", newAsteroids);
+        console.log("asteroids is: ", asteroids);
         asteroids.splice(j, 1);
         lasers.splice(i, 1);
         break;
