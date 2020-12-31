@@ -22,6 +22,9 @@ function draw() {
   background(0);
 
   for (let i = 0; i < asteroids.length; i++) {
+    if (ship.hits(asteroids[i])) {
+      console.log("yer ded");
+    }
     asteroids[i].render();
     asteroids[i].update();
     asteroids[i].edges();
@@ -36,8 +39,8 @@ function draw() {
         if (asteroids[j].r > 10) {
           let newAsteroids = asteroids[j].breakup();
           asteroids = asteroids.concat(newAsteroids);
-          console.log("newAsteroids is: ", newAsteroids);
-          console.log("asteroids is: ", asteroids);
+          // console.log("newAsteroids is: ", newAsteroids);
+          // console.log("asteroids is: ", asteroids);
         }
         asteroids.splice(j, 1);
         lasers.splice(i, 1);
