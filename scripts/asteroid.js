@@ -15,7 +15,7 @@ function Asteroid(pos, r) {
   this.total = random(5, 15);
   this.offset = [];
   for (let i = 0; i < this.total; i++) {
-    this.offset[i] = random(-this.r * 0.5, this.r);
+    this.offset[i] = random(-this.r * 0.2, this.r * 0.5);
   }
 
   this.update = function () {

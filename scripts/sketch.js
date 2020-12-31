@@ -24,14 +24,20 @@ function draw() {
   for (let i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
       console.log("yer ded");
+      //- Currently this runs out of control... something is wrong
+      //- with the for loop in ship.breakup()
+      //asteroids = asteroids.concat(ship.breakup());
+      break;
     }
+    console.log("asteroids is:", asteroids);
+    console.log("i is:", i);
     asteroids[i].render();
     asteroids[i].update();
     asteroids[i].edges();
   }
 
   for (let i = lasers.length - 1; i >= 0; i--) {
-    //console.log("lasers is ", lasers);
+    //-console.log("lasers is ", lasers);
     lasers[i].render();
     lasers[i].update();
     for (let j = asteroids.length - 1; j >= 0; j--) {

@@ -16,7 +16,18 @@ function Ship() {
     this.vel.add(force);
   };
 
+  this.breakup = function () {
+    let debris = [];
+    debris[0] = new Asteroid(this.pos, this.r);
+    debris[1] = new Asteroid(this.pos, this.r);
+    debris[2] = new Asteroid(this.pos, this.r);
+    debris[3] = new Asteroid(this.pos, this.r);
+    console.log("debris is: ", debris);
+    return debris;
+  };
+
   this.hits = function (asteroid) {
+    //-console.log(this.pos);
     let d = dist(this.pos.x, this.pos.y, asteroid.pos.x, asteroid.pos.y);
     if (d < this.r + asteroid.r) {
       return true;
