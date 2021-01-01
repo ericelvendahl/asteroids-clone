@@ -22,15 +22,16 @@ function draw() {
   background(0);
 
   for (let i = 0; i < asteroids.length; i++) {
-    if (ship.hits(asteroids[i])) {
+    if (ship.hits(asteroids[i]) && ship.intact == true) {
       console.log("yer ded");
       //- Currently this runs out of control... something is wrong
       //- with the for loop in ship.breakup()
-      //asteroids = asteroids.concat(ship.breakup());
+      ship.intact = false;
+      asteroids = asteroids.concat(ship.breakup());
       break;
     }
-    console.log("asteroids is:", asteroids);
-    console.log("i is:", i);
+    //-console.log("asteroids is:", asteroids);
+    //-console.log("i is:", i);
     asteroids[i].render();
     asteroids[i].update();
     asteroids[i].edges();
@@ -55,10 +56,12 @@ function draw() {
     }
   }
 
-  ship.render();
-  ship.turn();
-  ship.update();
-  ship.edges();
+  if (ship.intact == true) {
+    ship.render();
+    ship.turn();
+    ship.update();
+    ship.edges();
+  }
 
   //- Auto-turn for debugging
   //ship.turn(0.1);
