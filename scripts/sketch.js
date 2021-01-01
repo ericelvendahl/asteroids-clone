@@ -63,8 +63,8 @@ function draw() {
         if (asteroids[j].r > 10) {
           let newAsteroids = asteroids[j].breakup();
           asteroids = asteroids.concat(newAsteroids);
-          // console.log("newAsteroids is: ", newAsteroids);
-          // console.log("asteroids is: ", asteroids);
+          //-console.log("newAsteroids is: ", newAsteroids);
+          //-console.log("asteroids is: ", asteroids);
           score++;
         }
         asteroids.splice(j, 1);
@@ -88,6 +88,11 @@ function draw() {
 function drawWords(x) {
   fill(50);
   text(`Your score: ${score}`, x, 80);
+  if (!ship.intact) {
+    fill(50);
+    textSize(fontSize + 50);
+    text(`You DED!`, x, 280);
+  }
 }
 
 function keyReleased() {
